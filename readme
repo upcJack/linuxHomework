@@ -2,3 +2,8 @@ gcc -o generate_1G_file generate_1G_file.cpp
 ./generate_1G_file
 make
 ./parallel_copy 1 3
+
+
+直接使用
+gcc -o producer-consumer producer-consumer.c -lpthread
+./producer-consumer input.txt output.txt
