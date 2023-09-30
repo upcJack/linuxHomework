@@ -1,9 +1,13 @@
+有bug版本
 gcc -o generate_1G_file generate_1G_file.cpp 
 ./generate_1G_file
 make
 ./parallel_copy 1 3
 
 
-直接使用
+最终版本：
 gcc -o producer-consumer producer-consumer.c -lpthread
 ./producer-consumer input.txt output.txt
+
+最终版本带测试：
+直接运行sh test.sh
