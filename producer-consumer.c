@@ -10,7 +10,6 @@
 #include<sys/shm.h>
 #include<time.h>
 #include<pthread.h>
-//#include"apue.h"
 #define NRTHREAD 1  //只有一个读线程
 #define NWTHREAD 3   //有三个写线程
 #define BLOCKSIZE 4096
@@ -95,6 +94,7 @@ void *thr_r(void *arg)
     }
     pthread_exit((void *)0);
 }
+
 int main(int argc,char *argv[])
 {
     clock_t start_time,finish_time;
@@ -148,7 +148,7 @@ int main(int argc,char *argv[])
             return -1;
         }
     }
-    for (n=0;n<NRTHREAD;n++)
+    for (n=0;n<NRTHREAD;n++) //读进程退出
     {
         err=pthread_join(rtid[n],NULL);//阻塞等待id为thread的线程退出
         if (err!=0)
@@ -158,7 +158,7 @@ int main(int argc,char *argv[])
         }
     }
     close(pfd[1]);//关闭管程1 
-    for (n=0;n<NWTHREAD;n++)
+    for (n=0;n<NWTHREAD;n++) //写进程退出
     {
         err=pthread_join(wtid[n],NULL); //阻塞等待id为thread的线程退出
         if (err!=0)
